@@ -2,7 +2,7 @@ Tentu! Berikut adalah **revisi dari `README.md`** kamu yang telah **diperbarui d
 
 ---
 
-## ✅ `README.md` (Revisi Lengkap)
+## ✅ `README.md`
 
 ```markdown
 # Bot Trading AI - Winrate 80% (Simulasi)
