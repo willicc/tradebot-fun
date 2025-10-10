@@ -1,3 +1,6 @@
 ccxt
 pandas
 pandas-ta
+scikit-learn
+numpy
+ta
