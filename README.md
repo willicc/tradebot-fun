@@ -7,7 +7,7 @@
 
 Bot ini dirancang untuk trading otomatis di **Binance Futures** dengan analisis teknikal lanjutan, **machine learning**, dan filter multi-indikator untuk meningkatkan akurasi sinyal hingga mendekati **80% winrate** (simulasi).
 
-> ⚠️ Gunakan dengan risiko yang kamu pahami. Tidak ada jaminan profit.
+> ⚠️ Gunakan dengan risiko yang kamu pahami. Tidak ada jaminan PROFIT.
 
 ---
 
