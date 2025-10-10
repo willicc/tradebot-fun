@@ -35,8 +35,8 @@ Bot ini dirancang untuk trading otomatis di **Binance Futures** dengan analisis 
 ### 1. Clone Repository
 
 ```bash
-git clone https://github.com/namarepo/bot-trading-ai.git
-cd bot-trading-ai
+git clone https://github.com/willicc/tradebot-fun
+cd tradebot-fun
 ```
 
 ### 2. Buat Virtual Environment (Opsional tapi disarankan)
