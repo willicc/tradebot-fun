@@ -150,6 +150,5 @@ Bot ini hanya untuk eksperimen dan edukasi. Tidak ada jaminan profit.
 ---
 
 ## 🎉 Semoga Menghibur & Sukses!
-```
 
 ---
