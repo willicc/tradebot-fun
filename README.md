@@ -1,4 +1,4 @@
-## ✅ `README.md`
+## ✅ `README.md` (Revisi Lengkap dengan Ucapan Terima Kasih)
 
 ```markdown
 # Bot Trading AI - Winrate 80% (Simulasi)
@@ -7,7 +7,7 @@
 
 Bot ini dirancang untuk trading otomatis di **Binance Futures** dengan analisis teknikal lanjutan, **machine learning**, dan filter multi-indikator untuk meningkatkan akurasi sinyal hingga mendekati **80% winrate** (simulasi).
 
-> ⚠️ Gunakan dengan risiko yang kamu pahami. Tidak ada jaminan PROFIT.
+> ⚠️ Gunakan dengan risiko yang kamu pahami. Tidak ada jaminan profit.
 
 ---
 
@@ -35,8 +35,8 @@ Bot ini dirancang untuk trading otomatis di **Binance Futures** dengan analisis 
 ### 1. Clone Repository
 
 ```bash
-git clone https://github.com/willicc/tradebot-fun.git
-cd tradebot-fun
+git clone https://github.com/namarepo/bot-trading-ai.git
+cd bot-trading-ai
 ```
 
 ### 2. Buat Virtual Environment (Opsional tapi disarankan)
@@ -143,6 +143,12 @@ Jika kamu ingin berkontribusi atau menemukan bug, silakan buat issue atau pull r
 
 ---
 
+## 🙏 Acknowledgments
+
+Special thanks to **[@Fzlnsyh07](https://github.com/Fzlnsyh07)** for the inspiration and support in developing this bot.
+
+---
+
 ## 📄 Lisensi
 
 Bot ini hanya untuk eksperimen dan edukasi. Tidak ada jaminan profit.
@@ -150,5 +156,3 @@ Bot ini hanya untuk eksperimen dan edukasi. Tidak ada jaminan profit.
 ---
 
 ## 🎉 Semoga Menghibur & Sukses!
-
----
