@@ -1,7 +1,3 @@
-Tentu! Berikut adalah **revisi dari `README.md`** kamu yang telah **diperbarui dan dirapikan** agar lebih jelas dan informatif, termasuk langkah-langkah lengkap dari `git clone` hingga penggunaan bot, serta penambahan informasi tentang fitur baru seperti **machine learning** dan **winrate 80%**.
-
----
-
 ## ✅ `README.md`
 
 ```markdown
