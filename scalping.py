@@ -42,6 +42,8 @@ SCAN_INTERVAL_SECONDS = 120  # 2 menit untuk scalping
 # Pengaturan AI
 ML_TRAINING_PERIOD = 100  # Lebih pendek karena timeframe 5m
 ML_PREDICTION_THRESHOLD = 0.70  # Lebih ketat untuk scalping
+# Pengaturan Multi-Posisi
+MAX_POSITIONS = 3  # Jumlah maksimal posisi yang ingin dijaga
 
 # ==============================================================================
 # FUNGSI 1: MARKET SCANNER (Lebih ketat untuk scalping)
@@ -402,35 +404,58 @@ def get_signal_from_df(df, timeframe):
         return "NEUTRAL"
 
 # ==============================================================================
-# LOOP UTAMA BOT
+# LOOP UTAMA BOT (DIUBAH UNTUK MULTI-POSI & AUTO-REFILL)
 # ==============================================================================
 if __name__ == '__main__':
-    print("Bot Scalping 1% Profit (Multi-Filter + ML + Scalping Indicators) Dimulai...")
-    print("Mode: Memindai semua pasar, membuka maks 1 posisi.")
+    print(f"Bot Scalping 1% Profit (Multi-Filter + ML + Scalping Indicators) Dimulai...")
+    print(f"Mode: Memindai semua pasar, menjaga maks {MAX_POSITIONS} posisi aktif.")
     print("---")
     
     while True:
         try:
             open_positions = exchange.fetch_positions()
             active_position_symbols = {p['info']['symbol'] for p in open_positions if float(p['info']['positionAmt']) != 0}
-            if not active_position_symbols:
-                print(f"[{time.ctime()}] Tidak ada posisi terbuka. Mencari peluang...")
+            
+            # Hitung jumlah posisi aktif
+            current_positions = len(active_position_symbols)
+            print(f"[{time.ctime()}] Jumlah posisi saat ini: {current_positions}/{MAX_POSITIONS}")
+            
+            # Jika posisi < MAX_POSITIONS, cari peluang
+            if current_positions < MAX_POSITIONS:
+                print(f"Posisi aktif kurang dari {MAX_POSITIONS}, mencari peluang...")
                 potential_symbols = scan_markets()
                 if not potential_symbols:
                     print("Tidak ada token potensial yang ditemukan saat ini.")
+                
+                # Loop semua potential_symbols dan buka posisi jika sinyal valid
                 for symbol in potential_symbols:
+                    # Cek apakah symbol sudah ada posisi aktif
+                    if symbol in active_position_symbols:
+                        continue  # Lewati jika sudah ada posisi
+                    
+                    # Cek apakah jumlah posisi sudah mencapai batas
+                    if len(active_position_symbols) >= MAX_POSITIONS:
+                        print(f"Jumlah posisi sudah mencapai batas maksimal ({MAX_POSITIONS}). Menghentikan pemindaian siklus ini.")
+                        break
+
                     print(f"Menganalisis sinyal untuk {symbol}...")
                     signal = get_signal(symbol, TIMEFRAME)
                     if signal in ["LONG", "SHORT"]:
                         sl_price, tp_price = calculate_dynamic_sl_tp(symbol, TIMEFRAME, signal)
                         if sl_price is not None and tp_price is not None:
                             execute_trade(symbol, signal, sl_price, tp_price)
-                            print(f"Posisi untuk {symbol} telah dibuka. Menghentikan pemindaian siklus ini.")
-                            break 
+                            print(f"Posisi untuk {symbol} telah dibuka.")
+                            active_position_symbols.add(symbol)  # Tambahkan ke set
+                            
+                            # Cek apakah sudah mencapai batas maksimal
+                            if len(active_position_symbols) >= MAX_POSITIONS:
+                                print(f"Jumlah posisi sudah mencapai batas maksimal ({MAX_POSITIONS}). Menghentikan pemindaian siklus ini.")
+                                break
                     else:
                         print(f"Sinyal untuk {symbol}: {signal}. Tidak ada aksi.")
             else:
-                print(f"[{time.ctime()}] Posisi sudah terbuka untuk {active_position_symbols}. Menunggu posisi ditutup.")
+                print(f"[{time.ctime()}] Semua {MAX_POSITIONS} posisi sudah terbuka: {active_position_symbols}. Menunggu posisi ditutup.")
+                
         except Exception as e:
             print(f"Terjadi error besar di loop utama: {e}")
         finally:
