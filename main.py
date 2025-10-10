@@ -33,7 +33,7 @@ RSI_OVERBOUGHT = 70
 RSI_OVERSOLD = 30
 RSI_MIDLINE = 50
 # Pengaturan Posisi & Risiko
-POSITION_SIZE_USDT = 15
+POSITION_SIZE_USDT = 150
 LEVERAGE = 10
 ATR_SL_MULTIPLIER = 1.0  # Lebih ketat
 ATR_TP_MULTIPLIER = 1.5   # Risk-reward rendah karena winrate tinggi
