@@ -33,10 +33,10 @@ RSI_OVERBOUGHT = 70
 RSI_OVERSOLD = 30
 RSI_MIDLINE = 50
 # Pengaturan Posisi & Risiko
-POSITION_SIZE_USDT = 100  # Lebih kecil untuk scalping
+POSITION_SIZE_USDT = 1000  # Lebih kecil untuk scalping
 LEVERAGE = 10            # Lebih tinggi untuk scalping
-ATR_SL_MULTIPLIER = 0.5  # Lebih ketat
-ATR_TP_MULTIPLIER = 1.0  # Target profit 1% (lebih rendah dari ATR)
+ATR_SL_MULTIPLIER = 1.0  # Lebih ketat
+ATR_TP_MULTIPLIER = 2.0  # Target profit 1% (lebih rendah dari ATR)
 # Pengaturan Bot
 SCAN_INTERVAL_SECONDS = 120  # 2 menit untuk scalping
 # Pengaturan AI
@@ -63,7 +63,7 @@ def scan_markets():
                 df = pd.DataFrame(ohlcv, columns=['timestamp', 'open', 'high', 'low', 'close', 'volume'])
                 
                 volume_24h_usdt = (df['close'] * df['volume']).sum()
-                if volume_24h_usdt < 10_000_000:  # Lebih ketat
+                if volume_24h_usdt < 1_000_000:  # Lebih ketat
                     continue
 
                 # Tambahkan filter: trending dan tidak sideways
